@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Latihan Membuat company Profile",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Anas Ma'ruf & Yoga Pangestu",
+  "license": "ISC"
+}
