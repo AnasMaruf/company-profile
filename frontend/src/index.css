@@ -4,3 +4,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+
+.bg-style{
+    @apply flex flex-col gap-5 items-center justify-center w-full min-h-full text-black dark:text-white  bg-[#F0F4F9] dark:bg-[#0B0909]
+}

@@ -5,6 +5,12 @@
 3. Gray : #8C8C8C
 4. Pewter : #D6D6D6
 
-
 # TODO
-1. 
+
+1.
+
+## Backed
+
+${
+errorHandler.nickname ? "border-red-500" : "border-gray-500"
+}
