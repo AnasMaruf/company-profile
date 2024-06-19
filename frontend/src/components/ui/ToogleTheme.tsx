@@ -7,7 +7,7 @@ const ToogleTheme = () => {
   return (
     <button
       type="button"
-      className="absolute right-0 top-0 w-fit h-fit dark:text-white text-black"
+      className=" w-fit h-fit dark:text-white text-black"
       onClick={(e) => {
         e.preventDefault();
         toggleDarkMode();

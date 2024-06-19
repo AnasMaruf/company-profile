@@ -1,8 +1,12 @@
 import React from "react";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import TopNavbar from "../components/ui/TopNavbar";
+import { useTheme } from "../components/ThemeContext";
+import BottomNavbar from "../components/ui/BottomNavbar";
 
 const Home = () => {
+  const { isDarkMode, toggleDarkMode } = useTheme();
   const navigate = useNavigate();
   const handleNavigate = (destination) => {
     navigate(`${destination}`);
@@ -10,7 +14,8 @@ const Home = () => {
   return (
     <>
       {/* Alternate color bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#D6D6D6] via-[#8C8C8C] to-[#0B0909] */}
-      <section className="flex flex-col gap-5 items-center justify-center w-full h-full text-white bg-[#0B0909] ">
+      <section className={`bg-style relative ${isDarkMode ? "dark" : ""} `}>
+        <TopNavbar />
         Home
         <div>
           <button
@@ -27,6 +32,7 @@ const Home = () => {
           </button>
         </div>
         <Footer />
+        <BottomNavbar />
       </section>
     </>
   );
