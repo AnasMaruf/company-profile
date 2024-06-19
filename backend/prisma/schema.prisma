@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(100) @unique
+  email String @db.VarChar(100) @unique
+  password String @db.VarChar(100)
+  token String? @db.Text()
+  user_role String @db.VarChar(50) @default("user")
+  role Role @relation(fields: [user_role],references: [name])
+  posts Post[]
+
+  @@map("users")
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50) @unique
+  posts Post[]
+
+  @@map("categories")
+}
+
+model Role{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50) @unique
+  Users User[]
+
+  @@map("roles")
+}
+
+model Post{
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(100)
+  image String @db.VarChar(255)
+  description String @db.Text()
+  created_at DateTime @default(now())
+  category_name String @db.VarChar(100)
+  email_user String @db.VarChar(100)
+  category Category @relation(fields: [category_name],references: [name])
+  user User @relation(fields: [email_user],references: [email])
+
+  @@map("posts")
+}
