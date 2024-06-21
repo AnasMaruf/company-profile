@@ -15,7 +15,7 @@ const registerUserValidation = Joi.object({
 
 const loginUserValidation = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().min(50).required(),
+  password: Joi.string().required(),
 });
 
 export { registerUserValidation, loginUserValidation };
