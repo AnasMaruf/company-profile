@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
-const Form = ({ formType }) => {
+interface formProps {
+  formType: string;
+  setToken?: () => {};
+}
+
+const Form = ({ formType }: formProps) => {
   const navigate = useNavigate();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,6 +24,9 @@ const Form = ({ formType }) => {
       [id]: value,
     });
   };
+  const setToken = (userToken) => {
+    localStorage.setItem("token", JSON.stringify(userToken));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -26,6 +34,7 @@ const Form = ({ formType }) => {
     switch (formType) {
       case "log-in":
         console.log("Hello World !");
+        setToken("1234");
         break;
       case "sign-up":
         console.log("Hello World!");
@@ -34,6 +43,7 @@ const Form = ({ formType }) => {
         console.log("Hello World !");
         break;
     }
+    console.log(localStorage.getItem("token"));
     // navigate("/");
   };
 
@@ -41,7 +51,7 @@ const Form = ({ formType }) => {
     <>
       <form
         method="post"
-        className={`flex flex-col relative px-4 py-6 w-10/12 lg:w-3/12 h-3/4 rounded-md dark:bg-[#8C8C8C] bg-white`}
+        className={`flex flex-col relative px-4 py-6 w-10/12 lg:w-3/12 h-3/4 rounded-md dark:bg-[#161616] bg-white`}
       >
         <h1 className="text-3xl ">Blog Logo or Image</h1>
         <h2 className="text-3xl w-full text-center my-4 tracking-wide font-roboto font-bold  ">
@@ -213,7 +223,7 @@ const Form = ({ formType }) => {
         <button
           type="submit"
           onClick={(e) => handleSubmit(e)}
-          className={`rounded-md p-2 font-roboto font-semibold text-white dark:bg-[#0B0909] bg-blue-600   hover:scale-105 ease-out duration-150 ${
+          className={`rounded-md p-2 font-roboto font-semibold text-white dark:bg-black bg-blue-600 hover:scale-105 ease-out duration-150 ${
             formType == "log-in" ? "mt-2 " : "mt-8 "
           }`}
         >

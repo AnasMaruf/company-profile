@@ -7,7 +7,8 @@
 
 # TODO
 
-1.
+1. Fix page counter kabawa pas make search. Palaur bisa wae pas user di page 4 terus nga search, parameterna jadi ?page=4&title=""
+2. Sudah ditambahkan token ke localstorage agar nanti user tidak perlu login kembali, saat membuat function log-out pastikan untuk menghapus tokennya dengan localstorage.removeItem("token") atau localstorage.clear()
 
 ## Backed
 
