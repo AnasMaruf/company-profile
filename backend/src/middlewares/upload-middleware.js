@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     // Generate a unique filename for each uploaded file
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    // const fileExtension = path.extname(file.originalname);
     cb(null, uniqueSuffix + "-" + file.originalname);
   },
 });
@@ -20,7 +21,9 @@ const fileFilter = (req, file, cb) => {
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb("Error: File upload file supports the following filetypes -", fileTypes);
+    cb(
+      "Error: File upload only supports the following filetypes - " + fileTypes
+    );
   }
 };
 

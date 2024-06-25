@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import errorMiddleware from "../middlewares/error-middleware.js";
 import userRoute from "../routes/user-route.js";
 import dotenv from "dotenv";
-import postRoute from "../routes/post-route.js";
+import { postRoute } from "../routes/post-route.js";
 
 dotenv.config();
 const web = express();

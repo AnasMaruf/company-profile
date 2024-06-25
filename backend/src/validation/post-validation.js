@@ -7,6 +7,7 @@ const createPostValidation = Joi.object({
   image: Joi.string().max(255).optional(),
 });
 
+const getEmailPostValidation = Joi.string().email().required();
 const getIdPostValidation = Joi.number().positive().required();
 
 const updatePostValidation = Joi.object({
@@ -25,6 +26,7 @@ const searchPostValidation = Joi.object({
 export {
   createPostValidation,
   getIdPostValidation,
+  getEmailPostValidation,
   updatePostValidation,
   searchPostValidation,
 };

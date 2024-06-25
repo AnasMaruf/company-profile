@@ -6,5 +6,9 @@ import { upload } from "../middlewares/upload-middleware.js";
 const postRoute = new express.Router();
 postRoute.use(verifyToken);
 postRoute.use(upload.single("image"));
+postRoute.get("/api/posts", postController.search);
 postRoute.post("/api/posts", postController.create);
-export default postRoute;
+postRoute.put("/api/posts/:postId", postController.update);
+postRoute.delete("/api/posts/:postId", postController.remove);
+
+export { postRoute };
