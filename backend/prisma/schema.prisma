@@ -45,11 +45,11 @@ model Role{
 model Post{
   id Int @id @default(autoincrement())
   title String @db.VarChar(100)
-  image String @db.VarChar(255)
   description String @db.Text()
   created_at DateTime @default(now())
   category_name String @db.VarChar(100)
   email_user String @db.VarChar(100)
+  image String? @db.VarChar(255)
   category Category @relation(fields: [category_name],references: [name])
   user User @relation(fields: [email_user],references: [email])
 

@@ -52,11 +52,11 @@ const login = async (request, refreshToken) => {
   if (!checkUser) {
     throw new ResponseError(400, "Email or password is incorrect");
   }
-  const checkedPassword = await bcrypt.compare(
+  const isPasswordValid = await bcrypt.compare(
     user.password,
     checkUser.password
   );
-  if (!checkedPassword) {
+  if (!isPasswordValid) {
     throw new ResponseError(400, "Email or password is incorrect");
   }
   return prismaClient.user.update({
