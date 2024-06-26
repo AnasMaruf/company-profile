@@ -15,6 +15,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (searchParams.get("page")) searchParams.delete("page");
     searchParams.set("title", title);
     const newPath = `/search?${searchParams.toString()}`;
     navigate(newPath);
