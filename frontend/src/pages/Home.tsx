@@ -51,10 +51,7 @@ const Home = ({ isLoggedIn }) => {
       {/* Alternate color bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#D6D6D6] via-[#8C8C8C] to-[#0B0909] */}
       <main className={`bg-style relative ${isDarkMode ? "dark" : ""} `}>
         <TopNavbar isLoggedIn={isLoggedIn} />
-        <HeroSection
-          imagesForHero={imagesForHero}
-          usedIn={"home"}
-        />
+        <HeroSection imagesForHero={imagesForHero} usedIn={"home"} />
         <div className="mt-10">
           <button
             className="border-2 p-3 border-white rounded-full"

@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "../Footer";
+import Button from "../Elements/button";
 
-interface formProps {
-  formType: string;
-  setToken?: () => {};
-}
-
-const Form = ({ formType }: formProps) => {
+const Form = ({ formType }) => {
   const navigate = useNavigate();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [logInData, setLogInData] = useState({
+  const initialStateLogin = {
+    username: "",
+    password: "",
+  };
+  const initialStateRegister = {
     username: "",
     email: "",
     password: "",
-  }); // Store log in data in state
+    confPassword: "",
+  };
+  const [dataRegister, setDataRegister] = useState(initialStateRegister);
+  const [dataLogin, setDataLogin] = useState(initialStateLogin);
+  const { username, email, password, confPassword } = dataRegister;
+  const { username: usernameLogin, password: passwordLogin } = dataLogin;
+  const [msg, setMsg] = useState([]);
+  const handleChangeRegister = (e) => {
+    e.preventDefault();
+  };
+  const handleChangeLogin = (e) => {};
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setLogInData({
-      ...logInData,
-      [id]: value,
-    });
-  };
-  const setToken = (userToken) => {
-    localStorage.setItem("token", JSON.stringify(userToken));
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,7 +33,7 @@ const Form = ({ formType }: formProps) => {
     switch (formType) {
       case "log-in":
         console.log("Hello World !");
-        setToken("1234");
+
         break;
       case "sign-up":
         console.log("Hello World!");
@@ -69,8 +68,8 @@ const Form = ({ formType }: formProps) => {
             </label>
             <input
               id="username"
-              value={`${logInData.username}`}
-              onChange={handleChange}
+              value={username}
+              onChange={handleChangeRegister}
               type="text"
               placeholder="robert21"
               className={`rounded-md p-2 bg-white text-black border-2 `}
@@ -91,8 +90,8 @@ const Form = ({ formType }: formProps) => {
           </label>
           <input
             id="email"
-            value={`${logInData.email}`}
-            onChange={handleChange}
+            value={email}
+            onChange={handleChangeLogin}
             type="email"
             placeholder=""
             className={`rounded-md p-2 bg-white text-black border-2 `}
@@ -120,12 +119,12 @@ const Form = ({ formType }: formProps) => {
             <div className="relative w-full">
               <input
                 id="password"
-                value={`${logInData.password}`}
-                onChange={handleChange}
+                value={password}
+                onChange={handleChangeRegister}
                 type={`${passwordVisibility ? "text" : "password"}`}
                 className={`w-full rounded-md p-2 bg-white text-black border-2`}
               />
-              <button
+              <Button
                 type="button"
                 className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center"
                 onClick={(e) => {
@@ -141,7 +140,7 @@ const Form = ({ formType }: formProps) => {
                   }`}
                   className="w-4 h-4"
                 />
-              </button>
+              </Button>
             </div>
 
             {/* <p
@@ -165,12 +164,12 @@ const Form = ({ formType }: formProps) => {
             <div className="relative w-full">
               <input
                 id="confirm-password"
-                value={`${confirmPassword}`}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confPassword}
+                onChange={handleChangeRegister}
                 type={`${passwordVisibility ? "text" : "password"}`}
                 className={`w-full rounded-md p-2 bg-white text-black border-2`}
               />
-              <button
+              <Button
                 type="button"
                 className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center"
                 onClick={(e) => {
@@ -186,7 +185,7 @@ const Form = ({ formType }: formProps) => {
                   }`}
                   className="w-4 h-4"
                 />
-              </button>
+              </Button>
             </div>
             {/* <p
               className={`${
@@ -203,24 +202,24 @@ const Form = ({ formType }: formProps) => {
         {/* Forgot password or Sign Up button, only exist in log-in form */}
         {formType === "log-in" && (
           <div className="flex flex-row justify-between my-2  font-lato font-bold text-md">
-            <button
+            <Button
               type="button"
               className="hover:scale-110 ease-in duration-100 "
               onClick={() => navigate("/forgot-password")}
             >
               Forgot password ?
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               className=" hover:scale-110 ease-in duration-100 "
               onClick={() => navigate("/sign-up")}
             >
               Sign Up
-            </button>
+            </Button>
           </div>
         )}
 
-        <button
+        <Button
           type="submit"
           onClick={(e) => handleSubmit(e)}
           className={`rounded-md p-2 font-roboto font-semibold text-white dark:bg-black bg-blue-600 hover:scale-105 ease-out duration-150 ${
@@ -232,7 +231,7 @@ const Form = ({ formType }: formProps) => {
             : formType === "sign-up"
             ? "Sign Up"
             : "Reset Password"}
-        </button>
+        </Button>
       </form>
       <Footer />
     </>
