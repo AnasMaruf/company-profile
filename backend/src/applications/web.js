@@ -8,7 +8,7 @@ import { postRoute } from "../routes/post-route.js";
 
 dotenv.config();
 const web = express();
-web.use(cors({ credentials: true, Origin: "http://localhost:5173" }));
+web.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 web.use(cookieParser());
 web.use(express.json());
 web.use(express.static("public"));

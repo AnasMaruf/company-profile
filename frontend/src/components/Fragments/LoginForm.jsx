@@ -22,7 +22,6 @@ export const LoginForm = () => {
 
     try {
       await axios.post("http://localhost:8000/api/login", data);
-      setData(initialStateLogin);
       navigate("/");
     } catch (e) {
       const errors = e.response.data.errors.split(".");
