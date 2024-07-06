@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export const AuthLayout = ({ type, children }) => {
@@ -19,13 +18,19 @@ export const AuthLayout = ({ type, children }) => {
           : "Already have an account? please "}
 
         {type === "log-in" && (
-          <Link to={"/sign-up"} className="text-blue-600">
+          <Link
+            to={"/sign-up"}
+            className="text-blue-600"
+          >
             Register
           </Link>
         )}
 
         {type === "sign-up" && (
-          <Link to={"/log-in"} className="text-blue-600">
+          <Link
+            to={"/log-in"}
+            className="text-blue-600"
+          >
             Login
           </Link>
         )}

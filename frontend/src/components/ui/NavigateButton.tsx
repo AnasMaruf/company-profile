@@ -1,27 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const NavigateButton = ({
-  currentPage,
-  setCurrentPage,
   totalPost,
+  currentPage,
   postPerPage,
+  setCurrentPage,
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
 
   const totalPages = Math.ceil(totalPost / postPerPage);
+  // Get curent page number
+  useEffect(() => {
+    const page = searchParams.get("page");
+    if (page) setCurrentPage(parseInt(page));
+  }, [searchParams]);
   const nextPage = (e) => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      navigate(`/latest?page=${currentPage + 1}`);
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+      searchParams.set("page", nextPage.toString());
+      navigate(`?${searchParams.toString()}`);
     }
   };
   const prevPage = (e) => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      navigate(`/latest?page=${currentPage - 1}`);
+      const prevPage = currentPage - 1;
+      setCurrentPage(prevPage);
+      searchParams.set("page", prevPage.toString());
+      navigate(`?${searchParams.toString()}`);
     }
   };
   return (

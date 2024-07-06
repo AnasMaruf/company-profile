@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import InputForm from "../Elements/input";
 import Button from "../Elements/button";
@@ -36,7 +35,10 @@ export const RegisterForm = () => {
     <form onSubmit={handleSubmitRegister}>
       <ul>
         {msg.map((message, index) => (
-          <li key={index} className="text-red-600">
+          <li
+            key={index}
+            className="text-red-600"
+          >
             {message}
           </li>
         ))}
@@ -49,6 +51,8 @@ export const RegisterForm = () => {
         type="text"
         placeholder="john doe"
         label="Username"
+        labelClassName="font-roboto font-light tracking-wider"
+        inputClassName="rounded-md p-2 bg-white text-black border-2"
       />
       <InputForm
         id="email"
@@ -58,6 +62,8 @@ export const RegisterForm = () => {
         type="email"
         placeholder="example@gmail.com"
         label="Email"
+        labelClassName="font-roboto font-light tracking-wider"
+        inputClassName="rounded-md p-2 bg-white text-black border-2"
       />
       <InputForm
         id="password"
@@ -67,6 +73,8 @@ export const RegisterForm = () => {
         type="password"
         placeholder="*******"
         label="Password"
+        labelClassName="font-roboto font-light tracking-wider"
+        inputClassName="rounded-md p-2 bg-white text-black border-2"
       />
       <InputForm
         id="password"
@@ -76,6 +84,8 @@ export const RegisterForm = () => {
         type="password"
         placeholder="*******"
         label="Confirm Password"
+        labelClassName="font-roboto font-light tracking-wider"
+        inputClassName="rounded-md p-2 bg-white text-black border-2"
       />
       <Button type="submit">Register</Button>
     </form>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-const HeroSection = ({ imagesForHero, usedIn }) => {
+const HeroSection = ({ contentForHero, usedIn }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imgToUse, setImgToUse] = useState("" || []);
   const [executeAnimate, setExecuteAnimate] = useState(false);
@@ -9,11 +9,12 @@ const HeroSection = ({ imagesForHero, usedIn }) => {
   useEffect(() => {
     switch (usedIn) {
       case "post": {
-        setImgToUse(imagesForHero);
+        setImgToUse(contentForHero);
         break;
       }
       case "home": {
-        setImgToUse(imagesForHero[currentIndex]);
+        const images = contentForHero.map((content) => content.images); // Get all images from array of contents 
+        setImgToUse(images[currentIndex]);
         break;
       }
     }
@@ -22,11 +23,13 @@ const HeroSection = ({ imagesForHero, usedIn }) => {
 
   const prevSlide = () => {
     const isFirstIndex = currentIndex === 0;
-    const newIndex = isFirstIndex ? imagesForHero.length - 1 : currentIndex - 1; // If first slide, go to last slide
+    const newIndex = isFirstIndex
+      ? contentForHero.length - 1
+      : currentIndex - 1; // If first slide, go to last slide
     setCurrentIndex(newIndex);
   };
   const nextSlide = () => {
-    const isLastIndex = currentIndex === imagesForHero.length - 1;
+    const isLastIndex = currentIndex === contentForHero.length - 1;
     const newIndex = isLastIndex ? 0 : currentIndex + 1; // If first slide, go to last slide
     setCurrentIndex(newIndex);
   };
@@ -47,21 +50,25 @@ const HeroSection = ({ imagesForHero, usedIn }) => {
           </div>
         )}
         {usedIn === "home" && (
-          <div className="w-full">
-            <BsChevronCompactLeft
-              onClick={prevSlide}
-              className="hero-button left-10"
-            />
-            <BsChevronCompactRight
-              onClick={nextSlide}
-              className="hero-button right-10"
-            />
-          </div>
+          <>
+            <div>{}</div>
+            <div className="w-full">
+              <BsChevronCompactLeft
+                onClick={prevSlide}
+                className="hero-button left-10"
+              />
+              <BsChevronCompactRight
+                onClick={nextSlide}
+                className="hero-button right-10"
+              />
+            </div>
+          </>
         )}
       </div>
+      {/* Hero Circle */}
       {usedIn === "home" && (
         <div className="flex items-center justify-center gap-3 w-full h-fit mt-4 ">
-          {imagesForHero.slice(0, 5).map((_, index) => (
+          {contentForHero.slice(0, 5).map((_, index) => (
             <button
               type="button"
               key={index}

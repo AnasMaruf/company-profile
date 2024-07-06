@@ -1,8 +1,11 @@
 import React from "react";
 
-const Label = ({ children, htmlFor }) => {
+const Label = ({ children, htmlFor, labelClassName }) => {
   return (
-    <label htmlFor={htmlFor} className="font-roboto font-light tracking-wider">
+    <label
+      htmlFor={htmlFor}
+      className={`${labelClassName}`}
+    >
       {children}
     </label>
   );

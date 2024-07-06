@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Footer";
+import Footer from "../sections/Footer";
 import Button from "../Elements/button";
 
 const Form = ({ formType }) => {
