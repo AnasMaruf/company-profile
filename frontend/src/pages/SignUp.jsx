@@ -8,7 +8,7 @@ const SignUp = () => {
   return (
     <>
       {/* Alternate color bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[#D6D6D6] via-[#8C8C8C] to-[#0B0909] */}
-      <section className={`bg-style ${isDarkMode ? "" : ""}`}>
+      <section className={`bg-style flex flex-col bg-style relative items-center justify-center ${isDarkMode ? "" : ""}`}>
         <AuthLayout type="sign-up">
           <RegisterForm />
         </AuthLayout>

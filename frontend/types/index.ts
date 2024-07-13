@@ -5,14 +5,15 @@ export interface userProps {
   username: string;
   email: string;
   password: string;
+  token: string;
   user_role: string;
 }
 
 export interface contentProps {
-  id: number;
+  id?: number;
   title: string;
   body: string;
-  tags?: string[];
+  category?: string[];
   images?: string[];
   date: string;
 }

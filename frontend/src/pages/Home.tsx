@@ -9,7 +9,7 @@ import { dummyContentData } from "../../dummyData";
 import HeroSection from "../components/sections/HeroSection";
 import NavigateButton from "../components/ui/NavigateButton";
 import BodyContentList from "../components/sections/BodyContentList";
-import { storedContentArray } from "../zustand/store";
+import { storedContentArray, useTokenStored } from "../zustand/store";
 
 const Home = () => {
   const { isDarkMode } = useTheme();
@@ -23,7 +23,6 @@ const Home = () => {
   useEffect(() => {
     //  Ke ganti jadi get data api
     setContentsArray(dummyContentData);
-    console.log(1)
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,22 +41,8 @@ const Home = () => {
           contentForHero={contentForHero}
           usedIn={"home"}
         />
-        <div className="mt-10">
-          <button
-            className="border-2 p-3 border-white rounded-full"
-            onClick={() => navigate("/log-in")}
-          >
-            To Login
-          </button>
-          <button
-            className="border-2 p-3 border-white rounded-full"
-            onClick={() => navigate("/sign-up")}
-          >
-            To Sign Up
-          </button>
-        </div>
-        <div className=" h-fit my-20">
-          <BodyContentList currentContents={currentContents} />
+        <div className=" h-fit">
+          <BodyContentList currentContents={currentContents} usedIn={"home"}/>
           <NavigateButton
             totalPost={contentArray.length}
             currentPage={currentPage}

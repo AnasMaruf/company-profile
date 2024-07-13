@@ -8,6 +8,8 @@ import Search from "./pages/Search";
 import { ThemeProvider } from "./components/ThemeContext";
 import ForgotPass from "./pages/ForgotPass";
 import Post from "./pages/Post";
+import Profile from "./pages/Profile";
+import MyPosts from "./pages/MyPosts";
 
 function App() {
   return (
@@ -33,6 +35,10 @@ function App() {
                 element={<SignUp />}
               />
               <Route
+                path="/profile"
+                element={<Profile />}
+              />
+              <Route
                 path="/forgot-password"
                 element={<ForgotPass />}
               />
@@ -47,6 +53,10 @@ function App() {
               <Route
                 path="/new-post"
                 element={<NewPost />}
+              />
+              <Route
+                path="/my-posts"
+                element={<MyPosts />}
               />
             </Routes>
           </Router>

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { contentProps } from "../../types";
 
 interface TokenProps {
   tokenBlogAy: string;
@@ -12,14 +13,6 @@ export const useTokenStored = create<TokenProps>((set) => ({
   },
 }));
 
-interface contentProps {
-  id: number;
-  title: string;
-  body: string;
-  tags?: string[];
-  images?: string[];
-  date: string;
-}
 
 interface contentState {
   contentsArray: contentProps[];

@@ -3,41 +3,73 @@ import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import ToogleTheme from "./ToogleTheme";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTokenStored } from "../../zustand/store";
+import { GrLogin } from "react-icons/gr";
 
 // Komponen menampilkan menu, bila ukuran layar tablet keatas jadi floating menu kanan atas, bila smartphone jadi kanan bawah
 const FloatingMenu = ({ isActive }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const setToken = useTokenStored((state) => state.setToken);
+  const userToken = useTokenStored((state) => state.tokenBlogAy);
   const handleLogout = () => {
     localStorage.removeItem("token");
     setToken("");
-    if (location.pathname === "/profile" || location.pathname === "/new-post")
+    if (
+      location.pathname === "/profile" ||
+      location.pathname === "/new-post" ||
+      location.pathname === "/profile"
+    )
       navigate("/");
   };
+
   return (
     <div
       className={` ease-linear duration-150 absolute w-fit h-fit right-20 top-16 px-2 rounded-lg dark:bg-[#0b0909] bg-white border-2 border-gray-600 font-lato tracking-wider ${
         isActive ? "visible" : "invisible"
       }`}
     >
-      <ul className="flex flex-col justify-start w-full h-full">
-        {/* Ke buat condition men user is logged in or not */}
-        <li
-          onClick={(e) => {
-            navigate("/profile");
-          }}
-          className={`flex items-center justify-start gap-2 min-w-28 text-md px-2 py-4 hover:cursor-pointer border-b-2 border-black dark:border-gray-500`}
-        >
-          <FaUserCircle /> Profile
-        </li>
-        <li
-          onClick={handleLogout}
-          className={`flex items-center justify-start gap-2 min-w-28 text-md px-2 py-4 hover:cursor-pointer `}
-        >
-          <FaSignOutAlt /> Logout
-        </li>
-      </ul>
+      {userToken && userToken !== "" ? (
+        <ul className="flex flex-col justify-start w-full h-full">
+          {/* Ke buat condition men user is logged in or not */}
+
+          <li
+            onClick={(e) => {
+              navigate("/profile");
+            }}
+            className={`flex items-center justify-start gap-2 min-w-28 text-md px-2 py-4 hover:cursor-pointer border-b-2 border-black dark:border-gray-500`}
+          >
+            <FaUserCircle /> Profile
+          </li>
+          <li
+            onClick={handleLogout}
+            className={`flex items-center justify-start gap-2 min-w-28 text-md px-2 py-4 hover:cursor-pointer `}
+          >
+            <FaSignOutAlt /> Logout
+          </li>
+        </ul>
+      ) : (
+        <ul className="flex flex-col justify-start w-full h-full">
+          {/* Ke buat condition men user is logged in or not */}
+
+          <li
+            onClick={(e) => {
+              navigate("/log-in");
+            }}
+            className={`flex items-center justify-start gap-2 min-w-28 text-md px-2 py-4 hover:cursor-pointer border-b-2 border-black dark:border-gray-500`}
+          >
+            {" "}
+            Login
+          </li>
+          <li
+            onClick={(e) => {
+              navigate("/sign-up");
+            }}
+            className={`flex items-center justify-start gap-2 min-w-28 text-md px-2 py-4 hover:cursor-pointer `}
+          >
+            Signup
+          </li>
+        </ul>
+      )}
     </div>
   );
 };

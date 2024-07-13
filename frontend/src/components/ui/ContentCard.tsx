@@ -7,7 +7,7 @@ const ContentCard = ({ content }) => {
   return (
     <button
       onClick={() => navigate(`/post/${id}`)}
-      className="flex flex-col items-start font-lato border-2 w-80 md:w-[22rem] lg:w-[26rem] h-fit overflow-hidden rounded-lg shadow-lg hover:scale-105 duration-300 dark:bg-[#111111]"
+      className="flex flex-col items-start font-lato border-2 w-[21.5rem] md:w-[22rem] lg:w-[26rem] h-fit overflow-hidden rounded-lg shadow-lg hover:scale-105 duration-300 dark:bg-[#111111]"
     >
       <img
         src={images[0]}

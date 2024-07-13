@@ -10,16 +10,12 @@ const TopNavbar = () => {
   const navigate = useNavigate();
   const [currentScrollY, setCurrentScrollY] = useState(0);
   const [isTopNavbarVisible, setIsTopNavbarVisible] = useState(true);
-  const token = useTokenStored((state) => state.tokenBlogAy);
+  const userToken = useTokenStored((state) => state.tokenBlogAy);
   const [isFloatingMenuActive, setIsFloatingMenuActive] = useState(false);
-  const handleClickLogo = () => {
-    navigate("/");
-  };
 
   const handleClickNewPost = () => {
-    if (!token || token === "") {
+    if (!userToken || userToken === "") {
       navigate("/log-in");
-      return;
     } else {
       navigate("/new-post");
     }
@@ -53,7 +49,7 @@ const TopNavbar = () => {
       <FloatingMenu isActive={isFloatingMenuActive} />
       <FaRegFontAwesomeLogoFull
         className="flex-[0.25] hover:cursor-pointer"
-        onClick={handleClickLogo}
+        onClick={() => navigate("/")}
       />
       <SearchBar />
       <div className="flex flex-[0.3]  gap-7 items-center h-11">

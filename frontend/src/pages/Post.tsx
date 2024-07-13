@@ -6,6 +6,7 @@ import Footer from "../components/sections/Footer";
 import { contentProps } from "../../types";
 import { useParams } from "react-router-dom";
 import { storedContentArray } from "../zustand/store";
+import BottomNavbar from "../components/ui/BottomNavbar";
 
 const Post = () => {
   const { postId } = useParams();
@@ -15,7 +16,7 @@ const Post = () => {
     id: 0,
     title: "",
     body: "",
-    tags: [],
+    category: [],
     images: [],
     date: "",
   });
@@ -23,7 +24,7 @@ const Post = () => {
 
   useEffect(() => {
     contentArray.find((content) => {
-      if (content.id.toString() != postId) return false;
+      if (content.id?.toString() != postId) return false;
       setContent(content);
       if (content.images) setImagesForHero(content.images);
     });
@@ -31,7 +32,7 @@ const Post = () => {
   return (
     <main className={`bg-style relative ${isDarkMode ? "dark" : ""} `}>
       <TopNavbar />
-      {content ? (
+      {content && imagesForHero ? (
         <HeroSection
           contentForHero={imagesForHero}
           usedIn={"post"}
@@ -39,22 +40,27 @@ const Post = () => {
       ) : (
         ""
       )}
-      <article
-        className={`w-full min-h-[45vh] px-10 font-roboto my-16 `}
-      >
+      <article className={`w-full min-h-[45vh] px-10 font-roboto my-16 `}>
         <h1
+          id="title"
           className={`text-4xl dark:text-gray-300 text-black font-lato font-bold tracking-wider`}
         >
           {content.title}
         </h1>
-        <p className={`w-full my-8 text-xl dark:text-gray-300 text-black leading-relaxed`}>
+        <p
+          className={`w-full my-8 text-xl dark:text-gray-300 text-black leading-relaxed`}
+        >
           {content.body}
         </p>
-        <div className={`flex gap-3 text-base dark:text-purple-400 text-orange-500`}>
-          {content.tags && content.tags.map((tag) => <p>{tag}</p>)}
+        <div
+          className={`flex gap-3 text-base dark:text-purple-400 text-orange-500`}
+        >
+          {content.category &&
+            content.category.map((tag) => <p key={tag}>{tag}</p>)}
         </div>
       </article>
       <Footer />
+      <BottomNavbar />
     </main>
   );
 };

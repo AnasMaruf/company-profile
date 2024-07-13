@@ -13,9 +13,13 @@ const SearchBar = () => {
     setTitle(title);
   }, []);
 
+  useEffect(() => {
+    console.log(title);
+  }, [title]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchParams.get("page")) searchParams.delete("page");
+    if (searchParams.get("page")) searchParams.delete("page"); // Remove page param if it exists
     searchParams.set("title", title);
     const newPath = `/search?${searchParams.toString()}`;
     navigate(newPath);
